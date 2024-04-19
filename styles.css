@@ -7,6 +7,7 @@
 #main-container{
     padding: 20px;
     width: 100%;
+    min-height: 100vh;
     position: relative;
 }
 #gallery-container{
@@ -24,7 +25,7 @@
     object-fit: fill;
 }
 #popup-card{
-    position: sticky;
+    position: fixed;
     width: 30%;
     display: flex;
     flex-direction: column;
@@ -32,8 +33,7 @@
     gap: 10px;
     margin: 0px auto;
     background-color: white;
-    /* top: 30%;
-    left: 35%; */
+    top: 30%;
 }
 #popup-card-img img{
     width: 100%;
