@@ -86,35 +86,17 @@ popUpCard.addEventListener("click", (e) => {
 });
 
 selectOption.addEventListener("change",()=>{
-    console.log(selectOption.value);
     let selectValue = selectOption.value;
-    if(selectValue ==="2"){
-        galleryContainer.style.gridTemplateColumns = "repeat(2, minmax(0, 1fr))"
-        images.forEach((img)=>{
-            img.style.maxHeight="30rem"
-        })
-    }else if(selectValue ==="3"){
-        galleryContainer.style.gridTemplateColumns = "repeat(3, minmax(0, 1fr))"
+
+    galleryContainer.style.gridTemplateColumns = `repeat(${selectValue}, minmax(0, 1fr))`
+    if(selectValue <= "4"){
         images.forEach((img)=>{
             img.style.maxHeight="20rem"
         })
-    }else if(selectValue ==="4"){
-        galleryContainer.style.gridTemplateColumns = "repeat(4, minmax(0, 1fr))"
+    }else if(selectValue <= "6"){
         images.forEach((img)=>{
-            img.style.maxHeight="20rem"
+            img.style.maxHeight="13rem"
         })
-    }else if(selectValue ==="5"){
-        galleryContainer.style.gridTemplateColumns = "repeat(5, minmax(0, 1fr))"
-        images.forEach((img)=>{
-            img.style.maxHeight="15rem"
-        })
-    }else if(selectValue ==="6"){
-        galleryContainer.style.gridTemplateColumns = "repeat(6, minmax(0, 1fr))"
-        images.forEach((img)=>{
-            img.style.maxHeight="15rem"
-        })
-    }else{
-        galleryContainer.style.gridTemplateColumns = "repeat(10, minmax(0, 1fr))"
     }
 })
 
