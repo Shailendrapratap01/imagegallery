@@ -134,9 +134,12 @@
     }
 }
 @media only screen and (min-width: 2560px){
+    #gallery-container{
+        padding: 20px;
+    }
     .new-image{
         width: 16%;
-        height: 13rem;
+        height: 15rem;
         cursor: pointer;
         object-fit: fill;
     }
