@@ -1,11 +1,11 @@
 const galleryContainer = document.getElementById("gallery-container");
-const popUpCardContainer = document.getElementById("popup-card-container")
-const popUpImg = document.getElementById("popup-image")
-const popUpCard = document.getElementById("popup-card")
-const prevBtn = document.getElementById("prev-btn")
-const nextBtn = document.getElementById("next-btn")
+const popUpCardContainer = document.getElementById("popup-card-container");
+const popUpImg = document.getElementById("popup-image");
+const popUpCard = document.getElementById("popup-card");
+const prevBtn = document.getElementById("prev-btn");
+const nextBtn = document.getElementById("next-btn");
 
-let count =0 ;
+let count = 0;
 const imgArray = [
   "https://picsum.photos/id/237/200/300",
   "https://picsum.photos/id/637/200/300",
@@ -33,62 +33,50 @@ const imgArray = [
   "https://picsum.photos/id/54/200/300",
 ];
 
-for(let i=0;i<imgArray.length; i++){
-    const image = document.createElement("img")
-    image.src = imgArray[i];
-    image.classList.add("new-image");
-    galleryContainer.appendChild(image);
+for (let i = 0; i < imgArray.length; i++) {
+  const image = document.createElement("img");
+  image.src = imgArray[i];
+  image.classList.add("new-image");
+  galleryContainer.appendChild(image);
 }
 
-const images = document.querySelectorAll(".new-image")
-images.forEach((img, index)=>{
-    img.addEventListener("click",()=>{
-        popUpCardContainer.style.display="flex";
-        count = index
-        popUpImg.src=imgArray[count];
-        if(count === 0) {
-            prevBtn.style.visibility="hidden";
-            nextBtn.style.visibility="visible";
-        }else if(count === imgArray.length-1) {
-            prevBtn.style.visibility="visible";
-            nextBtn.style.visibility="hidden";
-        }else{
-            prevBtn.style.visibility="visible";
-            nextBtn.style.visibility="visible";
-        }
-    })
-})
-prevBtn.addEventListener("click",()=>{
-    count--;
-    if(count === 0) {
-        prevBtn.style.visibility="hidden";
-        nextBtn.style.visibility="visible";
-    }else if(count === imgArray.length-1) {
-        prevBtn.style.visibility="visible";
-        nextBtn.style.visibility="hidden";
-    }else{
-        prevBtn.style.visibility="visible";
-        nextBtn.style.visibility="visible";
-    }
-    popUpImg.src=imgArray[count];
-})
-nextBtn.addEventListener("click",()=>{
-    count++;
-    if(count === 0) {
-        prevBtn.style.visibility="hidden";
-        nextBtn.style.visibility="visible";
-    }else if(count === imgArray.length-1) {
-        prevBtn.style.visibility="visible";
-        nextBtn.style.visibility="hidden";
-    }else{
-        prevBtn.style.visibility="visible";
-        nextBtn.style.visibility="visible";
-    }
-    popUpImg.src=imgArray[count];
-})
-popUpCardContainer.addEventListener("click",()=>{
-    popUpCardContainer.style.display="none";
-})
-popUpCard.addEventListener("click",(e)=>{
-    e.stopPropagation();
-})
+const showOrHideBtns = (count) => {
+  if (count === 0) {
+    prevBtn.style.visibility = "hidden";
+    nextBtn.style.visibility = "visible";
+  } else if (count === imgArray.length - 1) {
+    prevBtn.style.visibility = "visible";
+    nextBtn.style.visibility = "hidden";
+  } else {
+    prevBtn.style.visibility = "visible";
+    nextBtn.style.visibility = "visible";
+  }
+};
+
+const images = document.querySelectorAll(".new-image");
+images.forEach((img, index) => {
+  img.addEventListener("click", () => {
+    popUpCardContainer.style.display = "flex";
+    count = index;
+    popUpImg.src = imgArray[count];
+    showOrHideBtns(count);
+  });
+});
+
+prevBtn.addEventListener("click", () => {
+  count--;
+  showOrHideBtns(count);
+  popUpImg.src = imgArray[count];
+});
+nextBtn.addEventListener("click", () => {
+  count++;
+  showOrHideBtns(count);
+  popUpImg.src = imgArray[count];
+});
+
+popUpCardContainer.addEventListener("click", () => {
+  popUpCardContainer.style.display = "none";
+});
+popUpCard.addEventListener("click", (e) => {
+  e.stopPropagation();
+});
