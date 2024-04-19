@@ -5,9 +5,9 @@ const popUpCard = document.getElementById("popup-card");
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
 const selectOption = document.getElementById("select-options");
-const options = document.querySelectorAll(".option")
+const options = document.querySelectorAll(".option");
 const backdropBtn = document.getElementById("backdrop-checkbox");
-const keyboardBtn = document.getElementById("keyboard-checkbox")
+const keyboardBtn = document.getElementById("keyboard-checkbox");
 
 let count = 0;
 const imgArray = [
@@ -85,43 +85,41 @@ popUpCard.addEventListener("click", (e) => {
   e.stopPropagation();
 });
 
-selectOption.addEventListener("change",()=>{
-    let selectValue = selectOption.value;
+selectOption.addEventListener("change", () => {
+  let selectValue = selectOption.value;
 
-    galleryContainer.style.gridTemplateColumns = `repeat(${selectValue}, minmax(0, 1fr))`
-    if(selectValue <= "4"){
-        images.forEach((img)=>{
-            img.style.maxHeight="20rem"
-        })
-    }else if(selectValue <= "6"){
-        images.forEach((img)=>{
-            img.style.maxHeight="13rem"
-        })
-    }
-})
+  galleryContainer.style.gridTemplateColumns = `repeat(${selectValue}, minmax(0, 1fr))`;
+  if (selectValue <= "4") {
+    images.forEach((img) => {
+      img.style.maxHeight = "20rem";
+    });
+  } else if (selectValue <= "6") {
+    images.forEach((img) => {
+      img.style.maxHeight = "13rem";
+    });
+  }
+});
 
-backdropBtn.addEventListener("click",()=>{
-    if(backdropBtn.checked){
-        popUpCardContainer.style.backgroundColor="rgba(0, 0, 0, 0.7)"
-    }else{
-        popUpCardContainer.style.backgroundColor="rgba(0, 0, 0, 0)"
-    }
-})
+backdropBtn.addEventListener("click", () => {
+  if (backdropBtn.checked) {
+    popUpCardContainer.style.backgroundColor = "rgba(0, 0, 0, 0.7)";
+  } else {
+    popUpCardContainer.style.backgroundColor = "rgba(0, 0, 0, 0)";
+  }
+});
 
-const handleKeyDown = (e)=>{
-    if(e.key === "ArrowLeft"){
-        if(count>0)
-        prevBtn.click()
-    }else if(e.key === "ArrowRight"){
-        if(count<23)
-        nextBtn.click()
-    }
-}
+const handleKeyDown = (e) => {
+  if (e.key === "ArrowLeft") {
+    if (count > 0) prevBtn.click();
+  } else if (e.key === "ArrowRight") {
+    if (count < imgArray.length - 1) nextBtn.click();
+  }
+};
 
-keyboardBtn.addEventListener("click",(e)=>{
-    if(keyboardBtn.checked){
-        document.addEventListener("keydown", handleKeyDown)
-    }else{
-        document.removeEventListener("keydown", handleKeyDown)
-    }
-})
+keyboardBtn.addEventListener("click", (e) => {
+  if (keyboardBtn.checked) {
+    document.addEventListener("keydown", handleKeyDown);
+  } else {
+    document.removeEventListener("keydown", handleKeyDown);
+  }
+});
