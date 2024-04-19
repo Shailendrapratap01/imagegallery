@@ -4,6 +4,10 @@ const popUpImg = document.getElementById("popup-image");
 const popUpCard = document.getElementById("popup-card");
 const prevBtn = document.getElementById("prev-btn");
 const nextBtn = document.getElementById("next-btn");
+const selectOption = document.getElementById("select-options");
+const options = document.querySelectorAll(".option")
+const backdropBtn = document.getElementById("backdrop-checkbox");
+const keyboardBtn = document.getElementById("keyboard-checkbox")
 
 let count = 0;
 const imgArray = [
@@ -80,3 +84,62 @@ popUpCardContainer.addEventListener("click", () => {
 popUpCard.addEventListener("click", (e) => {
   e.stopPropagation();
 });
+
+selectOption.addEventListener("change",()=>{
+    console.log(selectOption.value);
+    let selectValue = selectOption.value;
+    if(selectValue ==="2"){
+        galleryContainer.style.gridTemplateColumns = "repeat(2, minmax(0, 1fr))"
+        images.forEach((img)=>{
+            img.style.maxHeight="30rem"
+        })
+    }else if(selectValue ==="3"){
+        galleryContainer.style.gridTemplateColumns = "repeat(3, minmax(0, 1fr))"
+        images.forEach((img)=>{
+            img.style.maxHeight="20rem"
+        })
+    }else if(selectValue ==="4"){
+        galleryContainer.style.gridTemplateColumns = "repeat(4, minmax(0, 1fr))"
+        images.forEach((img)=>{
+            img.style.maxHeight="20rem"
+        })
+    }else if(selectValue ==="5"){
+        galleryContainer.style.gridTemplateColumns = "repeat(5, minmax(0, 1fr))"
+        images.forEach((img)=>{
+            img.style.maxHeight="15rem"
+        })
+    }else if(selectValue ==="6"){
+        galleryContainer.style.gridTemplateColumns = "repeat(6, minmax(0, 1fr))"
+        images.forEach((img)=>{
+            img.style.maxHeight="15rem"
+        })
+    }else{
+        galleryContainer.style.gridTemplateColumns = "repeat(10, minmax(0, 1fr))"
+    }
+})
+
+backdropBtn.addEventListener("click",()=>{
+    if(backdropBtn.checked){
+        popUpCardContainer.style.backgroundColor="rgba(0, 0, 0, 0.7)"
+    }else{
+        popUpCardContainer.style.backgroundColor="rgba(0, 0, 0, 0)"
+    }
+})
+
+const handleKeyDown = (e)=>{
+    if(e.key === "ArrowLeft"){
+        if(count>0)
+        prevBtn.click()
+    }else if(e.key === "ArrowRight"){
+        if(count<23)
+        nextBtn.click()
+    }
+}
+
+keyboardBtn.addEventListener("click",(e)=>{
+    if(keyboardBtn.checked){
+        document.addEventListener("keydown", handleKeyDown)
+    }else{
+        document.removeEventListener("keydown", handleKeyDown)
+    }
+})
